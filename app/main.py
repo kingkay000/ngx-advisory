@@ -1,16 +1,26 @@
 import os
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.ngx_advisory_router import router as ngx_router, engine
+from app.ngx_advisory_router import router as ngx_router
+from database.ngx_advisory_schema import init_db
+
+# Define the lifespan manager to run before the app accepts requests
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup: Initialize SQLite database schema tables dynamically
+    init_db()
+    yield
+    # Shutdown logic goes here if needed (e.g., closing connections)
 
 app = FastAPI(
     title="NGX Advisory API Engine",
     version="1.0.0",
-    description="Independent API Engine for n8n workflows and Zod / NGX Pulse reads."
+    description="Independent API Engine for n8n workflows and Zod / NGX Pulse reads.",
+    lifespan=lifespan  # Hook it into FastAPI here
 )
 
 # Enable CORS for public reading consumers
-# Update this section in your app/main.py
 
 ALLOWED_ORIGINS = [
     "https://ngxpulse.ng",
