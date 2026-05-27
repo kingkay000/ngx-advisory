@@ -30,3 +30,7 @@ app.include_router(ngx_router)
 @app.get("/", include_in_schema=False)
 def root():
     return {"message": "NGX Advisory API is live. Access /docs for API documentation."}
+
+@app.get("/health", include_in_schema=False)
+def health():
+    return {"status": "ok"}
