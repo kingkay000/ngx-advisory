@@ -7,13 +7,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     sqlite3 \
     && rm -rf /var/lib/apt/lists/*
 
-# Install required framework dependencies directly
-RUN pip install --no-cache-dir \
-    fastapi>=0.110.0 \
-    uvicorn[standard]>=0.28.0 \
-    sqlalchemy>=2.0.0 \
-    pydantic>=2.0.0
+# Layer 1 Cache: Copy requirements and install them first
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
+# Layer 2 Cache: Copy the rest of the application files
 COPY . /app/
 
 EXPOSE 8000
