@@ -13,12 +13,11 @@ services:
     env_file:
       - .env
     networks:
-      - default
-      - caddy_net
+      - n8n_default
     restart: unless-stopped
 
 networks:
-  caddy_net:
+  n8n_default:
     external: true
 
 volumes:
