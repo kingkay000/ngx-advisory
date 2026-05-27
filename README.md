@@ -29,6 +29,8 @@ Unlike monolithic setups, this engine is deployed completely standalone to maxim
 
 ```
 ## 📁 Repsitory Directory Structure
+
+```text
 ngx-advisory/
 ├── docker-compose.yml
 ├── .env.example
@@ -41,3 +43,4 @@ ngx-advisory/
 │   └── ngx_advisory_schema.py
 └── scripts/
     └── generate_api_key.py
+```
