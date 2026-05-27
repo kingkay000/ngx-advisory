@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  ngx-api:
+    build:
+      context: .
+      dockerfile: app/Dockerfile
+    container_name: ngx_api_engine
+    expose:
+      - "8000"
+    volumes:
+      - ngx_data:/app/data
+    env_file:
+      - .env
+    networks:
+      - default
+      - caddy_net
+    restart: unless-stopped
+
+networks:
+  caddy_net:
+    external: true
+
+volumes:
+  ngx_data:
+    driver: local
