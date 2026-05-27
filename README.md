@@ -28,7 +28,7 @@ Unlike monolithic setups, this engine is deployed completely standalone to maxim
 
 
 ```
-## Repsitory Directory Structure
+## 📁 Repsitory Directory Structure
 ngx-advisory/
 ├── docker-compose.yml
 ├── .env.example
