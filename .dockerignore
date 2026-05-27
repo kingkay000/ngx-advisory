@@ -1,0 +1,8 @@
+# ngx-advisory/.dockerignore
+.env
+.git
+.gitignore
+README.md
+docker-compose.yml
+*.pyc
+__pycache__
